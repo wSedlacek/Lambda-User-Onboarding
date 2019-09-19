@@ -5,13 +5,12 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { withFormik, Form as Formik, Field } from 'formik';
-import { Checkbox, TextField, Select } from 'formik-material-ui';
+import { Checkbox, TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 
 import { User, Role } from '../../models/User';
