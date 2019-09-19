@@ -1,22 +1,21 @@
 import React from 'react';
 import './app.component.scss';
 
+import { UserService } from './services/user.service';
+import { Form } from './components/form/form.component';
+import { User } from './models/User';
+
 export const App = () => {
+  const [users, setUsers] = React.useState<User[]>([]);
+
+  React.useEffect(() => {
+    const subscription = UserService.subscribe(setUsers);
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      <Form />
     </div>
   );
 };
