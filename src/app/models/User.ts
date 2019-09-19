@@ -1,1 +1,6 @@
-export interface User {}
+export interface User {
+  name: string;
+  email: string;
+  password: string;
+  tos: boolean;
+}
