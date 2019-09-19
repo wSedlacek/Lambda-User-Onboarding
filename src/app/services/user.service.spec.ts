@@ -11,7 +11,5 @@ it('should update subscribers when adding', () => {
   };
 
   UserService.subscribe(callback);
-  UserService.addUser(dave);
-
-  expect(data[0]).toBe(dave);
+  UserService.addUser(dave).then(() => expect(data[0]).toBe(dave));
 });
