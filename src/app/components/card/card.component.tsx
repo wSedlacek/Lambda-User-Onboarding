@@ -1,6 +1,8 @@
 import React from 'react';
 import './card.component.scss';
 
-export const Card = () => {
-  return <div className='Card'></div>;
+import { User } from '../../models/User';
+
+export const Card = ({ user }: { user: User }) => {
+  return <div className='Card'>{user.name}</div>;
 };

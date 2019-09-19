@@ -3,6 +3,7 @@ import './app.component.scss';
 
 import { UserService } from './services/user.service';
 import { Form } from './components/form/form.component';
+import { List } from './components/list/list.component';
 import { User } from './models/User';
 
 export const App = () => {
@@ -16,6 +17,7 @@ export const App = () => {
   return (
     <div className='App'>
       <Form />
+      <List users={users} />
     </div>
   );
 };
