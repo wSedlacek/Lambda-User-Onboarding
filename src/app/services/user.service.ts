@@ -12,7 +12,6 @@ export class UserService {
 
     const res = await axios.post<User>('https://reqres.in/api/users', newUser);
     this.users.next([...this.users.getValue(), res.data]);
-    console.log(res.data);
     return res.data;
   }
 
