@@ -8,7 +8,7 @@ export const List = ({ users }: { users: User[] }) => {
   return (
     <div className='List'>
       {users.map(user => (
-        <Card user={user} />
+        <Card user={user} key={user.email} />
       ))}
     </div>
   );

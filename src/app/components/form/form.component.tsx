@@ -83,6 +83,7 @@ export const Form = withFormik({
   handleSubmit(user, { resetForm, setSubmitting }) {
     UserService.addUser(user as User)
       .then(() => resetForm())
+      .catch(err => alert(err))
       .finally(() => setSubmitting(false));
   },
 })(SignupForm as any);
