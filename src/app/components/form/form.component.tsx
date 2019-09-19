@@ -7,8 +7,6 @@ import * as Yup from 'yup';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
-// - A Submit button to send our form data to the server.
-
 type SignupFormProps = {
   values: User;
   errors: { name: string; email: string; password: string };
