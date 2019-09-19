@@ -32,36 +32,25 @@ function SignupForm({ values, errors, touched, isSubmitting }: SignupFormProps) 
         Signup
       </Typography>
       <Formik className='Inputs'>
-        <Field className='Input' type='name' name='name' placeholder='Name' component={TextField} />
-        <Field
-          className='Input'
-          type='email'
-          name='email'
-          placeholder='Email'
-          component={TextField}
-        />
+        <Field className='Input' type='text' name='name' label='Name' component={TextField} />
+        <Field className='Input' type='email' name='email' label='Email' component={TextField} />
         <Field
           className='Input'
           type='password'
           name='password'
-          placeholder='Password'
+          label='Password'
           component={TextField}
         />
 
-        <FormControl className='Input' error={errors.role !== undefined && touched.role}>
-          <InputLabel shrink={true} htmlFor='role'>
-            Role
-          </InputLabel>
-          <Field type='text' name='role' select component={Select}>
-            {roles.map(role => (
-              <MenuItem value={role} key={role}>
-                {role}
-              </MenuItem>
-            ))}
-          </Field>
-        </FormControl>
+        <Field className='Input' type='text' name='role' label='Role' select component={TextField}>
+          {roles.map(role => (
+            <MenuItem value={role} key={role}>
+              {role}
+            </MenuItem>
+          ))}
+        </Field>
 
-        <FormControl className='TOS' error={errors.tos !== undefined && touched.tos}>
+        <FormControl className='TOS Input' error={errors.tos !== undefined && touched.tos}>
           <FormLabel component='legend'>Terms of Service</FormLabel>
           <FormControlLabel
             control={<Field type='checkbox' name='tos' value={values.tos} component={Checkbox} />}
