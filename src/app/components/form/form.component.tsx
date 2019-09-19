@@ -5,24 +5,27 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { withFormik, Form as Formik, Field } from 'formik';
-import { TextField, Checkbox } from 'formik-material-ui';
+import { Checkbox, TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 
-import { User } from '../../models/User';
+import { User, Role } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
 type SignupFormProps = {
   values: User;
-  errors: { name: string; email: string; password: string; tos: string };
-  touched: { name: boolean; email: boolean; password: boolean; tos: boolean };
+  errors: { name: string; email: string; password: string; role: string; tos: string };
+  touched: { name: boolean; email: boolean; password: boolean; role: boolean; tos: boolean };
   isSubmitting: boolean;
 };
 
 function SignupForm({ values, errors, touched, isSubmitting }: SignupFormProps) {
+  const roles = [Role.Admin, Role.User];
   return (
     <Paper className='Form'>
       <Typography gutterBottom variant='h4' component='h2'>
@@ -44,6 +47,19 @@ function SignupForm({ values, errors, touched, isSubmitting }: SignupFormProps) 
           placeholder='Password'
           component={TextField}
         />
+
+        <FormControl className='Input' error={errors.role !== undefined && touched.role}>
+          <InputLabel shrink={true} htmlFor='role'>
+            Role
+          </InputLabel>
+          <Field type='text' name='role' select component={Select}>
+            {roles.map(role => (
+              <MenuItem value={role} key={role}>
+                {role}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
 
         <FormControl className='TOS' error={errors.tos !== undefined && touched.tos}>
           <FormLabel component='legend'>Terms of Service</FormLabel>
@@ -67,6 +83,7 @@ export const Form = withFormik({
       name: '',
       email: '',
       password: '',
+      role: '',
       tos: false,
     };
   },
@@ -78,6 +95,7 @@ export const Form = withFormik({
     password: Yup.string()
       .min(8, 'Password must be 8 characters or longer')
       .required('Password is required'),
+    role: Yup.string().required('You are required to have a role'),
     tos: Yup.boolean().oneOf([true], 'You are required to agree'),
   }),
   handleSubmit(user, { resetForm, setSubmitting }) {
