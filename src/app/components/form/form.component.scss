@@ -1,0 +1,26 @@
+.Form {
+  position: relative;
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem;
+
+  .Inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .Input {
+      padding: 0.3rem 0;
+    }
+
+    .TOS {
+      padding: 2rem 0 0;
+    }
+
+    .Submit {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+    }
+  }
+}
